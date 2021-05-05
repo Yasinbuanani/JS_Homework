@@ -2,28 +2,32 @@
 
 // Задание 1
 
-var names = ['Vasya', 'Petya', 'Kolya', 'Ivan'];
+function makeNamesInObj(arr) {
+    var namesArr = [];
 
-var namesInObj = [];
+    arr.map(function (item) {
+        var namesInObj = {
+            name: item
+        };
+        return namesArr.push(namesInObj);
+    });
+    return namesArr;
+}
 
-var MakeNamesInObj = names.map(function (name) {
-
-    return namesInObj.push({ name });
-
-});
-
-console.log(namesInObj);
+console.log(makeNamesInObj(['Vasya', 'Petya', 'Kolya', 'Ivan']));
 
 
 // Задание 2
 
-var arr = ['00', '13', '24'];
+function makeTime(arr) {
+    var time = arr.reduce(function (prev, current) {
 
-var time = arr.reduce(function () {
-    return ('Текущее время : ' + arr.join(' : '));
-});
+        return prev + ' : ' + current;
+    }, 'Текущее время');
 
-console.log(time);
+    return time;
+}
+console.log(makeTime(['00', '13', '24']));
 
 // Заданbt 3
 
@@ -50,12 +54,15 @@ console.log(countVowels('ПрИвет'));
 
 function countSentencesLetters(text) {
     var textSplit = text.split(/[\.!\?]+/);
-    textSplit.pop();
 
     textSplit.map(function (sentence) {
-        var letters = sentence.split(/[' ',]+/).join('');
+        if (!sentence) {
+            textSplit.pop();
+        } else {
+            var letters = sentence.split(/[' ',]+/).join('');
 
-        console.log(sentence + ': Letters quantity is:' + letters.length);
+            console.log(sentence + ': Letters quantity is:' + letters.length);
+        }
     });
 }
 
