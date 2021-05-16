@@ -4,7 +4,8 @@ var tbody = document.getElementsByTagName('tbody')[0],
 
     table = document.getElementsByTagName('table')[0];
 
-table.addEventListener('click', function makeDelegation(event) {
+table.addEventListener('click', makeDelegation);
+function makeDelegation(event) {
     var target = event.target;
 
     if (target.tagName == 'TH') {
@@ -13,7 +14,7 @@ table.addEventListener('click', function makeDelegation(event) {
     if (target.tagName == 'TD') {
         makeClickTd(target);
     }
-});
+}
 
 function makeClickTh(elem) {
     var newTr = document.createElement('tr');
@@ -34,7 +35,7 @@ function makeClickTd(elem) {
 
     elem.appendChild(input).focus();
 
-    input.addEventListener('blur', function () {
+    input.addEventListener('blur', function setValue() {
         elem.innerHTML = input.value;
 
         if (elem.innerHTML === '') {
@@ -42,14 +43,20 @@ function makeClickTd(elem) {
         } else {
             elem.style.backgroundColor = 'antiquewhite';
         }
-        elem.addEventListener('click', makeClickTd);
+
+        table.addEventListener('click', makeDelegation);
     });
+    table.removeEventListener('click', makeDelegation);
+
     input.addEventListener('keypress', function (event) {
         if (event.keyCode == 13) {
+            elem.innerHTML = null;
             elem.innerHTML = input.value;
+
+        table.addEventListener('click', makeDelegation);
         }
     });
-    elem.removeEventListener('click', makeClickTd);
+    table.removeEventListener('click', makeDelegation);
 }
 
 
