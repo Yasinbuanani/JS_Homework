@@ -1,0 +1,17 @@
+input{
+    margin: 5px;
+}
+
+.white{
+    background-color: white;
+}
+.black{
+    background-color: black;
+}
+table{
+    border: 1px solid;
+}
+td{
+    width: 30px;
+    height: 30px;
+}
