@@ -27,21 +27,6 @@ button.onclick = function () {
 secondPar.addEventListener('click', setLocalStorage);
 
 function setLocalStorage(event) {
-    event.stopImmediatePropagation();
-    event.preventDefault();
-    var target = event.target;
-
-    if (target.tagName == 'A' && localStorage.getItem(target.innerText) == null) {
-        localStorage.setItem(target.innerText, JSON.stringify({ path: target.href }));
-        target.href = '#';
-        alert('Ссылка была сохранена');
-    }
-    secondPar.removeEventListener('click', setLocalStorage);
-    secondPar.addEventListener('click', setLocalStorage);
-}
-secondPar.addEventListener('click', getLocalStorage);
-
-function getLocalStorage(event) {
     event.preventDefault();
     var target = event.target;
 
@@ -49,7 +34,11 @@ function getLocalStorage(event) {
         var href = JSON.parse(localStorage.getItem(target.innerText));
         alert(href.path);
     }
-    secondPar.addEventListener('click', setLocalStorage);
+    if (target.tagName == 'A' && localStorage.getItem(target.innerText) == null) {
+        localStorage.setItem(target.innerText, JSON.stringify({ path: target.href }));
+        target.href = '#';
+        alert('Ссылка была сохранена');
+    }
 }
 
 

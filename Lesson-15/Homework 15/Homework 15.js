@@ -68,7 +68,7 @@ function makeTable(x, y) {
             var td = document.createElement('td');
 
             if (i % 2 == j % 2) {
-                td.className = "black";
+                td.className = 'black';
             }
             tr.appendChild(td);
         }
@@ -90,10 +90,10 @@ function makeClickTd() {
     var tableData = document.getElementsByTagName('td');
 
     for (var i = 0; i < tableData.length; i++) {
-        if (tableData[i].className == "black") {
-            tableData[i].className = "white";
+        if (tableData[i].className == 'black') {
+            tableData[i].className = 'white';
         } else {
-            tableData[i].className = "black";
+            tableData[i].className = 'black';
         }
     }
 }
